@@ -1,0 +1,94 @@
+Please report this error to author.
+`:help eskk` to see author's e-mail address.
+
+日  9/26 18:24:34 2021
+
+--- char ---
+char: ''(0)
+mode(): i
+--- char ---
+
+--- exception ---
+exception type: Vim internal error
+v:exception: Can't read '/Users/hsv-lab/.config/eskk/my_jisyo'!
+v:throwpoint: function eskk#filter[75]..<SNR>55_asym_filter[37]..<SNR>55_do_enter[3]..<SNR>55_do_enter_egglike[4]..eskk#get_skk_dict[2]..eskk#dictionary#new[1]..<SNR>73_Dictionary_new[4]..<SNR>73_PhysicalDict_new[10]..<SNR>73_PhysicalDict_update_lines[9]..<SNR>73_PhysicalDict_update_lines_main, 行 2
+
+   function <SNR>73_PhysicalDict_update_lines_main() abort dict
+1      unlockvar 1 self._content_lines
+2      let self._content_lines  = readfile(self.path)
+3      lockvar 1 self._content_lines
+4      call self.parse_lines()
+5   
+6      let self._ftime_at_set = getftime(self.path)
+   endfunction
+--- exception ---
+
+--- preedit ---
+(no preedit)
+--- preedit ---
+
+--- Vim's :version ---
+VIM - Vi IMproved 8.2 (2019 Dec 12, compiled Sep 19 2021 15:55:16)
+macOS 版 - x86_64
+適用済パッチ: 1-3450
+Compiled by Homebrew
+Huge 版 without GUI.  機能の一覧 有効(+)/無効(-)
++acl               -dnd               +listcmds          +postscript        +termresponse
++arabic            -ebcdic            +localmap          +printer           +textobjects
++autocmd           +emacs_tags        +lua               +profile           +textprop
++autochdir         +eval              +menu              -python            +timers
+-autoservername    +ex_extra          +mksession         +python3           +title
+-balloon_eval      +extra_search      +modify_fname      +quickfix          -toolbar
++balloon_eval_term -farsi             +mouse             +reltime           +user_commands
+-browse            +file_in_path      -mouseshape        +rightleft         +vartabs
+++builtin_terms    +find_in_path      +mouse_dec         +ruby              +vertsplit
++byte_offset       +float             -mouse_gpm         +scrollbind        +virtualedit
++channel           +folding           -mouse_jsbterm     +signs             +visual
++cindent           -footer            +mouse_netterm     +smartindent       +visualextra
+-clientserver      +fork()            +mouse_sgr         -sodium            +viminfo
++clipboard         +gettext           -mouse_sysmouse    -sound             +vreplace
++cmdline_compl     -hangul_input      +mouse_urxvt       +spell             +wildignore
++cmdline_hist      +iconv             +mouse_xterm       +startuptime       +wildmenu
++cmdline_info      +insert_expand     +multi_byte        +statusline        +windows
++comments          +ipv6              +multi_lang        -sun_workshop      +writebackup
++conceal           +job               -mzscheme          +syntax            -X11
++cryptv            +jumplist          +netbeans_intg     +tag_binary        -xfontset
++cscope            +keymap            +num64             -tag_old_static    -xim
++cursorbind        +lambda            +packages          -tag_any_white     -xpm
++cursorshape       +langmap           +path_extra        -tcl               -xsmp
++dialog_con        +libcall           +perl              +termguicolors     -xterm_clipboard
++diff              +linebreak         +persistent_undo   +terminal          -xterm_save
++digraphs          +lispindent        +popupwin          +terminfo          
+      システム vimrc: "$VIM/vimrc"
+      ユーザー vimrc: "$HOME/.vimrc"
+   第2ユーザー vimrc: "~/.vim/vimrc"
+       ユーザー exrc: "$HOME/.exrc"
+  デフォルトファイル: "$VIMRUNTIME/defaults.vim"
+       省略時の $VIM: "/usr/local/share/vim"
+コンパイル: clang -c -I. -Iproto -DHAVE_CONFIG_H -DMACOS_X -DMACOS_X_DARWIN -g -O2 -D_REENTRANT -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1 
+リンク: clang -L. -fstack-protector-strong -L/usr/local/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/readline/lib -L/usr/local/lib -o vim -lncurses -liconv -lintl -framework AppKit -L/usr/local/opt/lua/lib -llua5.4 -mmacosx-version-min=10.14 -fstack-protector-strong -L/usr/local/lib -L/usr/local/Cellar/perl/5.34.0/lib/perl5/5.34.0/darwin-thread-multi-2level/CORE -lperl -lm -lutil -lc -L/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/config-3.9-darwin -lpython3.9 -framework CoreFoundation -lruby.3.0 -L/usr/local/Cellar/ruby/3.0.2/lib 
+--- Vim's :version ---
+
+
+--- Operating System ---
+"uname -a" = Darwin hsv-labnoMacBook-Air.local 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019; root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64
+--- Operating System ---
+
+--- feature-list ---
+gui_running = 0
+unix = 1
+mac = 1
+macunix = 1
+win16 = 0
+win32 = 0
+win64 = 0
+win32unix = 0
+win95 = 0
+amiga = 0
+beos = 0
+dos16 = 0
+dos32 = 0
+os2 = 1
+qnx = 0
+vms = 0
+--- feature-list ---
