@@ -16,10 +16,23 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 " :PluginInstall
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'preservim/nerdtree'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 Plugin 'tyru/eskk.vim'
 call vundle#end()
 filetype plugin indent on
+
+" +---------+
+" | airline |
+" +---------+
+let g:airline_theme = 'molokai'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " +----------+
 " | NERDTree |
@@ -28,6 +41,15 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+
+" +-----+
+" | lsp |
+" +-----+
+let g:lsp_diagnostics_echo_cursor = 1
+set completeopt=menuone,noinsert
+inoremap <expr><CR> pumvisible() ? "<C-y>" : "<CR>"
+inoremap <expr><tab> pumvisible() ? "<Down>" : "<tab>"
+inoremap <expr><S-tab> pumvisible() ? "<Up>" : "<S-tab>"
 
 " +------+
 " | eskk |
@@ -62,9 +84,11 @@ set directory=$HOME/.vim/swap
 set backupdir=$HOME/.vim/backup
 set undodir=$HOME/.vim/undo
 
+" Syntax
 syntax on
 colorscheme monokai
 
+" Tab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -82,11 +106,14 @@ set cursorline
 set showmatch
 set matchtime=5
 
+" Serch
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
 set wrapscan
+
+" Folding
 
 " +--------+
 " | Keymap |
@@ -101,12 +128,9 @@ set wrapscan
 " :lmap  :lnoremap :lunmap    挿入、コマンドライン、Lang-Arg
 " :cmap  :cnoremap :cunmap    コマンドライン
 
-" 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
 
-" ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-" 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
