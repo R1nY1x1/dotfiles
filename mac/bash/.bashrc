@@ -6,8 +6,11 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
   PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-export PATH=$PATH:/opt/homebrew/bin
-export PATH=/opt/homebrew/Cellar/vim/8.2.3650/bin:$PATH
+alias ls="ls -G"
+
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/var/nodebrew/current/bin:$PATH
+export NODEBREW_ROOT=/opt/homebrew/var/nodebrew
 
 export EDITOR=vim
 eval "$(direnv hook bash)"

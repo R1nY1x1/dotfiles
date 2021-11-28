@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $(uname) != "Darwin ] ; then
+if [ $(uname) != "Darwin" ] ; then
     echo "Not macOS!"
     exit 1
 fi
@@ -24,3 +24,30 @@ defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write com.apple.CrashReporter DialogType -string "none"
 # 時計アイコンクリック時にOSやホスト名ipを表示する
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+# +------+
+# | Dock |
+# +------+
+# Dockで開いているアプリケーションのインジケータライトを表示する
+defaults write com.apple.dock show-process-indicators -bool true
+# 開いているアプリケーションのみをdockに表示
+defaults write com.apple.dock static-only -bool true
+# すべての（デフォルトの）アプリアイコンをDockから消去する
+defaults write com.apple.dock persistent-apps -array
+# プロセス再起動
+killall Dock
+
+# +--------+
+# | Finder |
+# +--------+
+# デフォルトで隠しファイルを表示する
+defaults write com.apple.finder AppleShowAllFiles -bool true
+# 全ての拡張子のファイルを表示
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+# 検索時にデフォルトでカレントディレクトリを検索
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+# USBやネットワークストレージに.SD_Storeファイルを作成しない
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+# プロセス再起動
+killall Finder
