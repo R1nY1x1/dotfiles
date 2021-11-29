@@ -34,6 +34,13 @@ git clone https://github.com/mzyy94/RictyDiminished-for-Powerline.git $HOME/Down
 # | vim |
 # +-----+
 brew install vim
+# vimフォルダ作成
+mkdir $HOME/.vim
+mkdir $HOME/.vim/swap
+mkdir $HOME/.vim/backup
+mkdir $HOME/.vim/undo
+mkdir $HOME/.vim/colors
+mkdir $HOME/.vim/bundle
 # カラースキームを取得
 git clone https://github.com/tomasr/monokai.git $HOME/Downloads/
 mv $HOME/Downloads/molokai/colors/monokai.vim $HOME/.vim/colors/
