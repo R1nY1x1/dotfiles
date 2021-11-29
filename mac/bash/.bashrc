@@ -9,7 +9,7 @@ fi
 alias ls="ls -G"
 
 export PATH=/opt/homebrew/bin:$PATH
-export PATH=/opt/homebrew/var/nodebrew/current/bin:$PATH
+export PATH=/opt/homebrew/Zar/nodebrew/current/bin:$PATH
 export NODEBREW_ROOT=/opt/homebrew/var/nodebrew
 
 export EDITOR=vim
