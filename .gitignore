@@ -1,6 +1,6 @@
 mac/vim/.vim/bundle/
 mac/vim/vim/colors/
-mac/.config/eskk
+mac/.config/eskk/
 
 !mac/vim/.vim/swap
 !mac/vim/.vim/backup
