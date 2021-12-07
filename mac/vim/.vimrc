@@ -24,6 +24,8 @@ Plugin 'mattn/vim-lsp-settings'
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 Plugin 'tyru/eskk.vim'
+Plugin 'skanehira/preview-markdown.vim'
+Plugin 'skanehira/translate.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -77,6 +79,20 @@ augroup END
 imap jk <Plug>(eskk:toggle)
 cmap jk <Plug>(eskk:toggle)
 
+" +-----------------+
+" | MarkdownPreview |
+" +-----------------+
+let g:preview_markdown_vertical = 1
+let g:preview_markdown_parser = 'glow'
+
+" +-----------+
+" | translate |
+" +-----------+
+let g:translate_source = "en"
+let g:translate_target = "ja"
+let g:translate_popup_window = 1
+let g:translate_winsize = 10
+
 " +-------+
 " | basic |
 " +-------+
@@ -114,6 +130,8 @@ set smartcase
 set wrapscan
 
 " Folding
+set foldmethod=indent
+set foldcolumn=3
 
 " +--------+
 " | Keymap |

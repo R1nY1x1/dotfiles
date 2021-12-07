@@ -20,7 +20,7 @@ ls -n $HOME/dotfiles/mac/bash/.bashrc $HOME/
 ls -n $HOME/dotfiles/mac/bash/.bash_profile $HOME/
 ls -n $HOME/dotfiles/mac/tmux/.tmux.conf $HOME/
 ls -n $HOME/dotfiles/mac/vim/.vimrc $HOME/
-ls -n $HOME/dotfiles/mac/vim/.vim $HOME/
+#ls -n $HOME/dotfiles/mac/vim/.vim $HOME/
 
 # +----------+
 # | Terminal |
@@ -34,7 +34,7 @@ git clone https://github.com/mzyy94/RictyDiminished-for-Powerline.git $HOME/Down
 # | vim |
 # +-----+
 brew install vim
-# vimフォルダ作成
+# .vimフォルダ作成
 mkdir $HOME/.vim
 mkdir $HOME/.vim/swap
 mkdir $HOME/.vim/backup
@@ -52,6 +52,12 @@ curl "https://skk-dev.github.io/dict/SKK-JISYO.L.gz" -o $HOME/Downloads/SKK-JISY
 gzip $HOME/Downloads/SKK-JISYO.L.gz
 mv $HOME/Downloads/SKK-JISYO.L $HOME/.config/eskk/
 
+# +------+
+# | glow |
+# +------+
+brew install glow
+
+
 # +---------+
 # | Node.js |
 # +---------+
@@ -64,8 +70,22 @@ nodebrew install-binaly stable
 nodebrew use stable
 
 # +------+
+# | Rust |
+# +------+
+# vim-lspの起動に必要なのでインストール
+brew install rustup
+rustup-init
+export PATH=$HOME/.cargo/bin:$PATH
+
+# +------+
 # | tmux |
 # +------+
 brew install tmux
+
+# +--------+
+# | Docker |
+# +--------+
+# M1版Dockerのインストール
+curl https://desktop.docker.com/mac/stable/arm64/Docker.dmg -o $HOME/Downloads/Docker.dmg
 
 exit 0
