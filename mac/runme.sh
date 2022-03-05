@@ -57,7 +57,6 @@ mv $HOME/Downloads/SKK-JISYO.L $HOME/.config/eskk/
 # +------+
 brew install glow
 
-
 # +---------+
 # | Node.js |
 # +---------+

@@ -13,6 +13,10 @@ export PATH=/opt/homebrew/var/nodebrew/current/bin:$PATH
 export NODEBREW_ROOT=/opt/homebrew/var/nodebrew
 export PATH=$HOME/.cargo/bin:$PATH
 
+export LC_CTYPE=en_US.UTF-8
+export TERM=xterm-256color
+
+export SHELL=/bin/bash
 export EDITOR=vim
 eval "$(direnv hook bash)"
 . "$HOME/.cargo/env"
