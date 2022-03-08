@@ -118,8 +118,25 @@ let g:translate_popup_window = 1
 let g:translate_winsize = 10
 
 " +-------+
+" | Local |
+" +-------+
+augroup vimrc-local
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+  " let files = findfile('.vimrc.local', escape(a:loc, ' ') . ':', -1)
+  let files = findfile('.vimrc.local', escape(a:loc, '').';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction
+
+" +-------+
 " | basic |
 " +-------+
+set belloff=all
 set directory=$HOME/.vim/swap
 set backupdir=$HOME/.vim/backup
 set undodir=$HOME/.vim/undo
@@ -177,18 +194,15 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 inoremap jj <Esc>
 
-" +-------+
-" | Local |
-" +-------+
-augroup vimrc-local
+" +----------+
+" | Filetype |
+" +----------+
+augroup BinaryXXD
   autocmd!
-  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+  autocmd BufReadPre  *.bin let &binary =1
+  autocmd BufReadPost * if &binary | silent %!xxd -g 1
+  autocmd BufReadPost * set ft=xxd | endif
+  autocmd BufWritePre * if &binary | %!xxd -r | endif
+  autocmd BufWritePost * if &binary | silent %!xxd -g 1
+  autocmd BufWritePost * set nomod | endif
 augroup END
-
-function! s:vimrc_local(loc)
-  " let files = findfile('.vimrc.local', escape(a:loc, ' ') . ':', -1)
-  let files = findfile('.vimrc.local', escape(a:loc, '').';', -1)
-  for i in reverse(filter(files, 'filereadable(v:val)'))
-    source `=i`
-  endfor
-endfunction
