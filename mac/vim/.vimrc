@@ -54,6 +54,10 @@ set completeopt=menuone,noinsert
 inoremap <expr><CR> pumvisible() ? "<C-y>" : "<CR>"
 inoremap <expr><tab> pumvisible() ? "<Down>" : "<tab>"
 inoremap <expr><S-tab> pumvisible() ? "<Up>" : "<S-tab>"
+nnoremap <Space>d :LspPeekDefinition<CR>
+nnoremap <Space>D :LspDefinition<CR>
+nnoremap <Space>t :LspPeekTypeDefinition<CR>
+nnoremap <Space>T :LspTypeDefinition<CR>
 
 " +-------+
 " | vsnip |
@@ -146,9 +150,9 @@ syntax on
 colorscheme monokai
 
 " Tab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set smarttab
 set smartindent
@@ -205,4 +209,11 @@ augroup BinaryXXD
   autocmd BufWritePre * if &binary | %!xxd -r | endif
   autocmd BufWritePost * if &binary | silent %!xxd -g 1
   autocmd BufWritePost * set nomod | endif
+augroup END
+
+augroup PythonTab
+  autocmd! 
+  autocmd BufNewFile,BufRead *.py setlocal shiftwidth=4
+  autocmd BufNewFile,BufRead *.py setlocal tabstop=4
+  autocmd BufNewFile,BufRead *.py setlocal softtabstop=4
 augroup END
