@@ -64,22 +64,16 @@ nnoremap <Space>T :LspTypeDefinition<CR>
 " +-------+
 let g:vsnip_snippet_dir = expand('~/.vim/vsnip')
 " Expand
-imap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
-smap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
 " Expand or jump
-imap <expr> <C-l> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-smap <expr> <C-l> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 " Jump forward or backward
-imap <expr> <Tab> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-smap <expr> <Tab> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-" Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
-" See https://github.com/hrsh7th/vim-vsnip/pull/50
-nmap s <Plug>(vsnip-select-text)
-xmap s <Plug>(vsnip-select-text)
-nmap S <Plug>(vsnip-cut-text)
-xmap S <Plug>(vsnip-cut-text)
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
 " +------+
 " | eskk |
@@ -120,22 +114,6 @@ let g:translate_source = "en"
 let g:translate_target = "ja"
 let g:translate_popup_window = 1
 let g:translate_winsize = 10
-
-" +-------+
-" | Local |
-" +-------+
-augroup vimrc-local
-  autocmd!
-  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
-augroup END
-
-function! s:vimrc_local(loc)
-  " let files = findfile('.vimrc.local', escape(a:loc, ' ') . ':', -1)
-  let files = findfile('.vimrc.local', escape(a:loc, '').';', -1)
-  for i in reverse(filter(files, 'filereadable(v:val)'))
-    source `=i`
-  endfor
-endfunction
 
 " +-------+
 " | basic |
@@ -193,6 +171,8 @@ set foldcolumn=3
 
 nnoremap j gj
 nnoremap k gk
+nnoremap <silent> gb :bnext<CR>
+nnoremap <silent> gB :bprev<CR>
 
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
@@ -217,3 +197,19 @@ augroup PythonTab
   autocmd BufNewFile,BufRead *.py setlocal tabstop=4
   autocmd BufNewFile,BufRead *.py setlocal softtabstop=4
 augroup END
+
+" +-------+
+" | Local |
+" +-------+
+augroup vimrc-local
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+  " let files = findfile('.vimrc.local', escape(a:loc, ' ') . ':', -1)
+  let files = findfile('.vimrc.local', escape(a:loc, '').';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction

@@ -11,6 +11,11 @@ export PATH=/opt/homebrew/bin:$PATH
 # +-----+
 brew install git
 
+# +--------+
+# | Github |
+# +--------+
+brew install gh
+
 # +----------+
 # | Dotfiles |
 # +----------+
@@ -77,10 +82,25 @@ brew install rustup
 rustup-init
 export PATH=$HOME/.cargo/bin:$PATH
 
+# +----+
+# | go |
+# +----+
+brew install go
+
 # +------+
 # | tmux |
 # +------+
 brew install tmux
+
+# +--------+
+# | direnv |
+# +--------+
+brew install direnv
+
+# +-----+
+# | fzf |
+# +-----+
+brew install fzf
 
 # +--------+
 # | Docker |
