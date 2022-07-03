@@ -48,8 +48,8 @@ mkdir $HOME/.vim/colors
 mkdir $HOME/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 # カラースキームを取得
-git clone https://github.com/tomasr/monokai.git $HOME/Downloads/monokai
-mv $HOME/Downloads/monokai/colors/monokai.vim $HOME/.vim/colors/
+git clone https://github.com/tomasr/molokai.git $HOME/Downloads/molokai
+mv $HOME/Downloads/monokai/colors/molokai.vim $HOME/.vim/colors/
 # powerlineを設定
 git clone https://github.com/b-ryan/powerline-shell $HOME/Downloads/powerline-shell
 sudo python $HOME/Downloads/powerline-shell/setup.py insatall
