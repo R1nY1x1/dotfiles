@@ -19,14 +19,17 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'preservim/nerdtree'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
 Plugin 'prabirshrestha/vim-lsp'
 Plugin 'mattn/vim-lsp-settings'
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+Plugin 'mattn/vim-treesitter'
 Plugin 'hrsh7th/vim-vsnip'
 Plugin 'hrsh7th/vim-vsnip-integ'
 Plugin 'tyru/eskk.vim'
-Plugin 'skanehira/preview-markdown.vim'
+Plugin 'previm/previm'
 Plugin 'skanehira/translate.vim'
 call vundle#end()
 filetype plugin indent on
@@ -41,10 +44,33 @@ let g:airline#extensions#tabline#enabled = 1
 " +----------+
 " | NERDTree |
 " +----------+
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+
+" +-----+
+" | fzf |
+" +-----+
+" fzf settings
+let $FZF_DEFAULT_OPTS="--layout=reverse"
+let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'border': 'sharp' } }
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+nnoremap <silent> <Space>f :Files<CR>
+nnoremap <silent> <Space>g :GFiles<CR>
+nnoremap <silent> <Space>G :GFiles?<CR>
+nnoremap <silent> <Space>b :Buffers<CR>
+nnoremap <silent> <Space>h :History<CR>
+nnoremap <silent> <Space>r :RG<CR>
+
 
 " +-----+
 " | lsp |
@@ -101,11 +127,11 @@ augroup END
 imap jk <Plug>(eskk:toggle)
 cmap jk <Plug>(eskk:toggle)
 
-" +-----------------+
-" | MarkdownPreview |
-" +-----------------+
-let g:preview_markdown_vertical = 1
-let g:preview_markdown_parser = 'glow'
+" +--------+
+" | Previm |
+" +--------+
+let g:previm_open_cmd = 'open -a Google\ Chrome'
+" let g:previm_enable_realtime = 1
 
 " +-----------+
 " | translate |
@@ -114,6 +140,13 @@ let g:translate_source = "en"
 let g:translate_target = "ja"
 let g:translate_popup_window = 1
 let g:translate_winsize = 10
+
+" +----------+
+" | vim-peek |
+" +----------+
+let g:peek_popup_window = 1
+let g:peek_winsize = 10
+let g:peek_move_span = 1
 
 " +-------+
 " | basic |

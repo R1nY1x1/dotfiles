@@ -8,6 +8,7 @@ fi
 
 alias ls="ls -G"
 #alias fzf="fzf --preview 'cat {}'"
+#export FZF_DEFAULT_COMMAND="find /"
 export FZF_DEFAULT_OPTS="--height 40% --reverse --preview 'cat {}'"
 
 export PATH=/opt/homebrew/bin:$PATH
@@ -23,6 +24,10 @@ export EDITOR=vim
 eval "$(direnv hook bash)"
 . "$HOME/.cargo/env"
 
+
+# +--------------+
+# | Fuzzy Finder |
+# +--------------+
 # Fuzzy Change Directory
 fcd() {
   local dir
@@ -30,34 +35,81 @@ fcd() {
   cd "$dir"
 }
 
-# Fuzzy git checkout BRanch
-fbr() {
+# Fuzzy Git BRanch
+fgbr() {
+  local branches branch
+  branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  echo $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+# Fuzzy Git CheckOut
+fgco() {
   local branches branch
   branches=$(git branch -vv) &&
   branch=$(echo "$branches" | fzf +m) &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
-# Fuzzy docker container EXec
-fex() {
+# Fuzzy Github RePository
+fghrp() {
+  local repos repo
+  repos=$(gh repo list) &&
+  repo=$(echo "$repos" | fzf +m --preview 'gh repo view {}') &&
+  echo $(echo "$repo" | awk '{print $1}' | sed "s/.* //")
+}
+
+# Fuzzy Github ISsue
+fghis() {
+  local issues issue
+  issues=$(gh issue list) &&
+  issue=$(echo "$issues" | fzf +m) &&
+  echo $(echo "$issue" | awk '{print $1}' | sed "s/.* //")
+}
+
+# Fuzzy Github PullRequest
+fghpr() {
+  local prs pr
+  prs=$(gh pr list) &&
+  pr=$(echo "$prs" | fzf +m) &&
+  echo $(echo "$pr" | awk '{print $1}' | sed "s/.* //")
+}
+
+# Fuzzy Github RePository Create
+fghrpc() {
+  gh repo create "$@"
+  git remote add origin "https://github.com/R1nY1x1/$1.git"
+  git branch -M main
+  git push -u origin main
+}
+
+# Fuzzy Docker ConTainer
+fdct() {
   local containers container
-  containers=$(docker container ls | awk 'NR>=2 {print}') &&
+  containers=$(docker container ls -a | awk 'NR>=2 {print}') &&
   container=$(echo "$containers" | fzf +m) &&
-  docker exec "$@" $(echo "$container" | awk '{print $1}' | sed "s/.* //") /bin/bash
+  echo $(echo "$container" | awk '{print $1}' | sed "s/.* //")
 }
 
-# Fuzzy docker image RUN
-frun() {
+# Fuzzy Docker IMage
+fdim() {
   local images image
-  images=$(docker image ls | awk 'NR>=2 {print}') &&
+  images=$(docker image ls -a | awk 'NR>=2 {print}') &&
   image=$(echo "$images" | fzf +m) &&
-  docker run "$@" $(echo "$image" | awk '{print $3}' | sed "s/.* //") /bin/bash
+  echo $(echo "$image" | awk '{print $3}' | sed "s/.* //")
 }
 
-# Fuzzy docker image ReMove
-frm() {
-  local images image
-  images=$(docker image ls | awk 'NR>=2 {print}') &&
-  image=$(echo "$images" | fzf +m) &&
-  docker image rm $(echo "$image" | awk '{print $3}' | sed "s/.* //")
+# Fuzzy Docker EXec
+fdex() {
+  local containers container
+  containers=$(docker container ls -a | awk 'NR>=2 {print}') &&
+  container=$(echo "$containers" | fzf +m) &&
+  docker exec -it $(echo "$container" | awk '{print $1}' | sed "s/.* //") /bin/bash
+}
+
+# +-----------+
+# | Thesaurus |
+# +-----------+
+saurus() {
+  $HOME/Documents/Go/Saurus/Saurus $@
 }

@@ -59,9 +59,29 @@ gzip $HOME/Downloads/SKK-JISYO.L.gz
 mv $HOME/Downloads/SKK-JISYO.L $HOME/.config/eskk/
 
 # +------+
-# | glow |
+# | tmux |
 # +------+
-brew install glow
+brew install tmux
+
+# +-----+
+# | fzf |
+# +-----+
+brew install fzf
+
+# +--------+
+# | direnv |
+# +--------+
+brew install direnv
+
+# +---------+
+# | ripgrep |
+# +---------+
+brew install ripgrep
+
+# +---------+
+# | roswell |
+# +---------+
+brew install roswell
 
 # +---------+
 # | Node.js |
@@ -77,7 +97,6 @@ nodebrew use stable
 # +------+
 # | Rust |
 # +------+
-# vim-lspの起動に必要なのでインストール
 brew install rustup
 rustup-init
 export PATH=$HOME/.cargo/bin:$PATH
@@ -87,25 +106,9 @@ export PATH=$HOME/.cargo/bin:$PATH
 # +----+
 brew install go
 
-# +------+
-# | tmux |
-# +------+
-brew install tmux
-
-# +--------+
-# | direnv |
-# +--------+
-brew install direnv
-
-# +-----+
-# | fzf |
-# +-----+
-brew install fzf
-
 # +--------+
 # | Docker |
 # +--------+
-# M1版Dockerのインストール
 curl https://desktop.docker.com/mac/stable/arm64/Docker.dmg -o $HOME/Downloads/Docker.dmg
 
 exit 0
