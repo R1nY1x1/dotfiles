@@ -177,6 +177,7 @@ set number
 set cursorline
 set showmatch
 set matchtime=5
+set ambiwidth=double
 
 " Serch
 set incsearch
