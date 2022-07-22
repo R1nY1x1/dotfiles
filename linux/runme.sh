@@ -9,7 +9,7 @@ sudo apt-get upgrade
 # +-----+
 # | Git |
 # +-----+
-sudo apt-get install -y git
+# sudo apt-get install -y git
 
 # +--------+
 # | Github |
@@ -36,7 +36,7 @@ ln -s $HOME/dotfiles/linux/vim/.vim $HOME/
 # +-----+
 sudo apt-get install vim
 # .vimフォルダ作成
-# mkdir $HOME/.vim
+mkdir $HOME/.vim
 mkdir $HOME/.vim/swap
 mkdir $HOME/.vim/backup
 mkdir $HOME/.vim/undo
@@ -44,12 +44,12 @@ mkdir $HOME/.vim/colors
 mkdir $HOME/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 # カラースキームを取得
-git clone https://github.com/tomasr/molokai.git $HOME/Downloads/molokai
-mv $HOME/Downloads/molokai/colors/molokai.vim $HOME/.vim/colors/
+git clone https://github.com/sickill/vim-monokai.git $HOME/Downloads/vim-monokai
+mv $HOME/Downloads/vim-monokai/colors/monokai.vim $HOME/.vim/colors/
 # powerlineを設定
 sudo apt-get install -y powerline fonts-powerline
 # eskk
-git clone https://github.com/skk-dev/dict.git
+git clone https://github.com/skk-dev/dict.git $HOME/Downloads/dict
 mkdir $HOME/.config/eskk
 mv $HOME/Downloads/dict/SKK-JISYO.L $HOME/.config/eskk/
 
@@ -76,10 +76,20 @@ sudo apt-get install -y ripgrep
 # +---------+
 # | Node.js |
 # +---------+
-# sudo apt-get install -y nodejs npm
-# sudo npm install -g n
-# n stable
-# sudo apt-get purge -y nodejs npm
+sudo apt-get install -y nodejs npm
+sudo npm install -g n
+sudo n stable
+sudo apt-get purge -y nodejs npm
+
+# +--------+
+# | Vue.js |
+# +--------+
+sudo npm install -g @vue/cli
+
+# +------------+
+# | TypeScript |
+# +------------+
+sudo npm install -g typescript
 
 # +----+
 # | go |

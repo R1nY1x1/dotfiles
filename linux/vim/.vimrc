@@ -25,12 +25,12 @@ Plugin 'prabirshrestha/vim-lsp'
 Plugin 'mattn/vim-lsp-settings'
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-Plugin 'mattn/vim-treesitter'
+"Plugin 'mattn/vim-treesitter'
 Plugin 'hrsh7th/vim-vsnip'
 Plugin 'hrsh7th/vim-vsnip-integ'
 Plugin 'tyru/eskk.vim'
 Plugin 'previm/previm'
-Plugin 'skanehira/translate.vim'
+Plugin 'Yggdroot/indentLine'
 call vundle#end()
 filetype plugin indent on
 
@@ -133,13 +133,9 @@ cmap jk <Plug>(eskk:toggle)
 let g:previm_open_cmd = 'open -a Google\ Chrome'
 " let g:previm_enable_realtime = 1
 
-" +-----------+
-" | translate |
-" +-----------+
-let g:translate_source = "en"
-let g:translate_target = "ja"
-let g:translate_popup_window = 1
-let g:translate_winsize = 10
+" +------------+
+" | indentLine |
+" +------------+
 
 " +----------+
 " | vim-peek |
@@ -158,7 +154,7 @@ set undodir=$HOME/.vim/undo
 
 " Syntax
 syntax on
-colorscheme molokai
+colorscheme monokai
 
 " Tab
 set tabstop=2

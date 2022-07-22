@@ -21,7 +21,7 @@ mkdir %USERPROFILE%\vimfiles\colors
 mkdir %USERPROFILE%\vimfiles\bundle
 git clone https://github.com/VundleVim/Vundle.vim.git %USERPROFILE%\vimfiles\bundle\Vundle.vim
 mklink %USERPROFILE%\_vimrc %USERPROFILE%\dotfiles\windows\vim\_vimrc
-git clone https://github.com/tomasr/molokai.git %USERPROFILE%\Downloads\molokai
-move %USERPROFILE%\Downloads\molokai\colors\molokai.vim %USERPROFILE%\vimfiles\colors\
+git clone https://github.com/sickill/vim-monokai.git %USERPROFILE%\Downloads\vim-monokai
+move %USERPROFILE%\Downloads\vim-monokai\colors\monokai.vim %USERPROFILE%\vimfiles\colors\
 git clone https://github.com/skk-dev/dict.git %USERPROFILE%\Downloads\dict
 move %USERPROFILE%\Downloads\dict\colors\SKK-JISYO.L %USERPROFILE%\.config\eskk\
